@@ -1,0 +1,11 @@
+Package: bandSimulation
+Type: Package
+Title: Simulation of satellite bands based on in situ reflectance
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <daniel.maciel@inpe.br>
+Description: This package will simulate satellite bands based on in situ remote sensing reflectance
+    Currently, data for Landsat-8, Landsat-7, Sentinel-2 and Sentinel-3/OLCI are available.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
