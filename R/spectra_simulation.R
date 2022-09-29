@@ -280,17 +280,16 @@ oli_simulation = function(spectra, point_name) {
 
 }
 
-tm_etm_simulation = function(spectra, point_name) {
+etm_simulation = function(spectra, point_name) {
 
   #Simulação e Rrs
 
-  #Simula??o Sentinel 2A e 2B
+  #Simulation to Landsat-7/ETM+
 
   require(openxlsx)
   require(dplyr)
   require(tidyr)
 
-  #L? as fun??es de resposta - SENTINEL 2A
   etm_B2 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,2))
   etm_B3 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,3))
   etm_B4 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,4))
