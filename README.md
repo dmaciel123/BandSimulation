@@ -1,6 +1,6 @@
 # BandSimulation
  
-This package is used for simulating the bands of remote sensors based on they respective Spectral Response Functions. The satellite added to this package are: 
+This package is used for simulating the bands of remote sensors based on they respective Spectral Response Functions. The satellites added to this package are: 
 
 Landsat-5/TM
 
