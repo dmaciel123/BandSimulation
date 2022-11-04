@@ -400,6 +400,7 @@ tm_simulation = function(spectra, point_name) {
 
 
 superdove_simulation <- function(spectra, point_name) {
+
   #Simulation for SuperDove bands
   #Data from here: https://support.planet.com/hc/en-us/articles/360014290293-Do-you-provide-Relative-Spectral-Response-Curves-RSRs-for-your-satellites-
 
@@ -408,112 +409,66 @@ superdove_simulation <- function(spectra, point_name) {
   require(tidyr)
 
   #Read the SRF
+  # Bands
+  # coastal
+  # blue
+  # green
+  # green_II
+  # yellow
+  # red
+  # red_edge
+  # NIR
 
+  B1 =     read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,2)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B2 =        read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,3)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B3 =       read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,4)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B4 =    read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,5)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B5 =      read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,6)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B6 =         read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,7)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B7 =    read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,8)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B8 =         read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,9)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
 
-
-
-
-  S2_A_B1 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,2)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B2 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,3)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B3 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,4)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B4 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,5)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B5 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,6)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B6 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,7)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B7 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,8)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B8 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,9)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B9 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,10)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B10 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,11)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B11 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,12)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B12 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,13)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B13 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,14)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B14 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,15)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B15 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,16)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B16 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,17)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B17 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,18)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B18 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,19)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B19 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,20)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B20 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,21)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B21 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,22)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
 
 
 
   #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
 
-  S2_A_B1 $FAC  <- S2_A_B1$B1  /sum(S2_A_B1$B1  )
-  S2_A_B2 $FAC  <- S2_A_B2$B2  /sum(S2_A_B2$B2  )
-  S2_A_B3 $FAC  <- S2_A_B3$B3  /sum(S2_A_B3$B3  )
-  S2_A_B4 $FAC  <- S2_A_B4$B4  /sum(S2_A_B4$B4  )
-  S2_A_B5 $FAC  <- S2_A_B5$B5 /sum(S2_A_B5 $B5 )
-  S2_A_B6 $FAC  <- S2_A_B6$B6 /sum(S2_A_B6 $B6 )
-  S2_A_B7 $FAC  <- S2_A_B7$B7 /sum(S2_A_B7 $B7 )
-  S2_A_B8 $FAC  <- S2_A_B8$B8 /sum(S2_A_B8 $B8 )
-  S2_A_B9 $FAC  <- S2_A_B9$B9 /sum(S2_A_B9 $B9 )
-  S2_A_B10$FAC  <- S2_A_B10$B10/sum(S2_A_B10$B10)
-  S2_A_B11$FAC  <- S2_A_B11$B11/sum(S2_A_B11$B11)
-  S2_A_B12$FAC  <- S2_A_B12$B12/sum(S2_A_B12$B12)
-  S2_A_B13$FAC  <- S2_A_B13$B13/sum(S2_A_B13$B13)
-  S2_A_B14$FAC  <- S2_A_B14$B14/sum(S2_A_B14$B14)
-  S2_A_B15$FAC  <- S2_A_B15$B15/sum(S2_A_B15$B15)
-  S2_A_B16$FAC  <- S2_A_B16$B16/sum(S2_A_B16$B16)
-  S2_A_B17$FAC  <- S2_A_B17$B17/sum(S2_A_B17$B17)
-  S2_A_B18$FAC  <- S2_A_B18$B18/sum(S2_A_B18$B18)
-  S2_A_B19$FAC  <- S2_A_B19$B19/sum(S2_A_B19$B19)
+  B1$FAC  <- B1[,2]  /sum(B1[,2])
+  B2$FAC  <- B2[,2]  /sum(B2[,2])
+  B3$FAC  <- B3[,2]  /sum(B3[,2])
+  B4$FAC  <- B4[,2]  /sum(B4[,2])
+  B5$FAC  <- B5[,2] /sum(B5[,2])
+  B6$FAC  <- B6[,2] /sum(B6[,2])
+  B7$FAC  <- B7[,2] /sum(B7[,2])
+  B8$FAC  <- B8[,2] /sum(B8[,2])
 
 
   espec <- data.frame(Wave = c(400:900), spectra)
 
 
-  olci.df.sim <- data.frame(1:19)
+  superdove.df.sim <- data.frame(1:8)
 
 
   for(i in 2:ncol(espec)) {
 
-    olci.df.sim[1,i] <- sum(na.rm = T, S2_A_B1$FAC * espec[,i])
-    olci.df.sim[2,i] <- sum(na.rm = T, S2_A_B2$FAC * espec[,i])
-    olci.df.sim[3,i] <- sum(na.rm = T, S2_A_B3$FAC * espec[,i])
-    olci.df.sim[4,i] <- sum(na.rm = T, S2_A_B4$FAC * espec[,i])
-    olci.df.sim[5,i] <- sum(na.rm = T, S2_A_B5$FAC * espec[,i])
-    olci.df.sim[6,i] <- sum(na.rm = T, S2_A_B6$FAC * espec[,i])
-    olci.df.sim[7,i] <- sum(na.rm = T, S2_A_B7$FAC * espec[,i])
-    olci.df.sim[8,i] <- sum(na.rm = T, S2_A_B8$FAC * espec[,i])
-    olci.df.sim[9,i] <- sum(na.rm = T, S2_A_B9$FAC * espec[,i])
-    olci.df.sim[10,i] <-sum(na.rm = T, S2_A_B10$FAC * espec[,i])
-    olci.df.sim[11,i]<- sum(na.rm = T, S2_A_B11$FAC * espec[,i])
-    olci.df.sim[12,i]<- sum(na.rm = T, S2_A_B12$FAC * espec[,i])
-    olci.df.sim[13,i]<- sum(na.rm = T, S2_A_B13$FAC * espec[,i])
-    olci.df.sim[14,i]<- sum(na.rm = T, S2_A_B14$FAC * espec[,i])
-    olci.df.sim[15,i]<- sum(na.rm = T, S2_A_B15$FAC * espec[,i])
-    olci.df.sim[16,i]<- sum(na.rm = T, S2_A_B16$FAC * espec[,i])
-    olci.df.sim[17,i]<- sum(na.rm = T, S2_A_B17$FAC * espec[,i])
-    olci.df.sim[18,i]<- sum(na.rm = T, S2_A_B18$FAC * espec[,i])
-    olci.df.sim[19,i]<- sum(na.rm = T, S2_A_B19$FAC * espec[,i])
+    superdove.df.sim[1,i] <- sum(na.rm = T, B1$FAC * espec[,i])
+    superdove.df.sim[2,i] <- sum(na.rm = T, B2$FAC * espec[,i])
+    superdove.df.sim[3,i] <- sum(na.rm = T, B3$FAC * espec[,i])
+    superdove.df.sim[4,i] <- sum(na.rm = T, B4$FAC * espec[,i])
+    superdove.df.sim[5,i] <- sum(na.rm = T, B5$FAC * espec[,i])
+    superdove.df.sim[6,i] <- sum(na.rm = T, B6$FAC * espec[,i])
+    superdove.df.sim[7,i] <- sum(na.rm = T, B7$FAC * espec[,i])
+    superdove.df.sim[8,i] <- sum(na.rm = T, B8$FAC * espec[,i])
+
 
 
   }
 
-  olci.df.sim[,1] <-  c(400,
-                        412,
-                        442,
-                        490,
-                        510,
-                        560,
-                        620,
-                        665,
-                        673,
-                        681,
-                        708,
-                        753,
-                        761,
-                        764,
-                        767,
-                        778,
-                        865,
-                        885,
-                        900)
+  superdove.df.sim[,1] <-  c(443, 490, 531, 565, 610, 665, 705, 865)
 
-  names(olci.df.sim) <- c("Wave", point_name)
+  names(superdove.df.sim) <- c("Wave", point_name)
 
-  return(olci.df.sim)
+  return(superdove.df.sim)
 
 }
 
