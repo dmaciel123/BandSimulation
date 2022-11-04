@@ -4,9 +4,9 @@
 #
 # This function focused on: OLCI, MSI, OLI and TM/ETM+ Spectral Response Functions
 #
-#Please, note that the input spectral should contain data between 400-900 nm and
+# Please, note that the input spectra should contain data between 400-900 nm and
 # should be organized with the wavelengths in line, and stations in collumns
-#
+
 
 
 olci_simulation <- function(spectra, point_name) {
