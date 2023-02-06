@@ -17,3 +17,7 @@ PlanetScope SuperDove
 The Spectral Response Functions for each satellite were obtained from its respective sources. 
 
 An example is included (BandSimulation.R) with the freely available Rrs data from Drayson et al. (2022) (https://www.sciencedirect.com/science/article/pii/S2352340922006837) 
+
+
+For running this package in R you can download the archive or use the gitclone function. After that, open the project directory and run the `bandsSimulation` file.
+
