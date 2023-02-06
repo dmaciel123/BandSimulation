@@ -20,5 +20,6 @@ oli = oli_simulation(spectra = data[,-1], point_name = point_names)
 etm = etm_simulation(spectra = data[,-1], point_name = point_names)
 tm = tm_simulation(spectra = data[,-1], point_name = point_names)
 olci = olci_simulation(spectra = data[,-1], point_name = point_names)
+superDove = superdove_simulation(spectra = data[,-1], point_name = point_names)
 
 
