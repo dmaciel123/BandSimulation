@@ -290,17 +290,17 @@ etm_simulation = function(spectra, point_name) {
   require(dplyr)
   require(tidyr)
 
-  etm_B2 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,2))
-  etm_B3 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,3))
-  etm_B4 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,4))
-  etm_B5 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,5))
+  etm_B1 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,2))
+  etm_B2 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,3))
+  etm_B3 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,4))
+  etm_B4 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,5))
 
   #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
 
-  etm_B2$FAC <- etm_B2$ETMB1/sum(etm_B2$ETMB1)
-  etm_B3$FAC <- etm_B3$ETMB2/sum(etm_B3$ETMB2)
-  etm_B4$FAC <- etm_B4$ETMB3/sum(etm_B4$ETMB3)
-  etm_B5$FAC <- etm_B5$ETMB4/sum(etm_B5$ETMB4)
+  etm_B1$FAC <- etm_B1$ETMB1/sum(etm_B1$ETMB1)
+  etm_B2$FAC <- etm_B2$ETMB2/sum(etm_B2$ETMB2)
+  etm_B3$FAC <- etm_B3$ETMB3/sum(etm_B3$ETMB3)
+  etm_B4$FAC <- etm_B4$ETMB4/sum(etm_B4$ETMB4)
 
 
 
@@ -314,10 +314,10 @@ etm_simulation = function(spectra, point_name) {
 
   for(i in 2:ncol(espec)) {
 
-    df_SIM_ETM[1,i] <- sum(etm_B2$FAC * espec[,i])
-    df_SIM_ETM[2,i] <- sum(etm_B3$FAC * espec[,i])
-    df_SIM_ETM[3,i] <- sum(etm_B4$FAC * espec[,i])
-    df_SIM_ETM[4,i] <- sum(etm_B5$FAC * espec[,i])
+    df_SIM_ETM[1,i] <- sum(na.rm = T, etm_B1$FAC * espec[,i])
+    df_SIM_ETM[2,i] <- sum(na.rm = T, etm_B2$FAC * espec[,i])
+    df_SIM_ETM[3,i] <- sum(na.rm = T, etm_B3$FAC * espec[,i])
+    df_SIM_ETM[4,i] <- sum(na.rm = T, etm_B4$FAC * espec[,i])
 
 
 
@@ -349,34 +349,34 @@ tm_simulation = function(spectra, point_name) {
   require(tidyr)
 
   #L? as fun??es de resposta - SENTINEL 2A
-  etm_B2 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,2))
-  etm_B3 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,3))
-  etm_B4 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,4))
-  etm_B5 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,5))
+  tm_B1 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,2))
+  tm_B2 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,3))
+  tm_B3 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,4))
+  tm_B4 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,5))
 
   #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
 
-  etm_B2$FAC <- etm_B2$ETMB1/sum(etm_B2$ETMB1)
-  etm_B3$FAC <- etm_B3$ETMB2/sum(etm_B3$ETMB2)
-  etm_B4$FAC <- etm_B4$ETMB3/sum(etm_B4$ETMB3)
-  etm_B5$FAC <- etm_B5$ETMB4/sum(etm_B5$ETMB4)
+  tm_B1$FAC <- tm_B1$TMB1/sum(tm_B1$TMB1)
+  tm_B2$FAC <- tm_B2$TMB2/sum(tm_B2$TMB2)
+  tm_B3$FAC <- tm_B3$TMB3/sum(tm_B3$TMB3)
+  tm_B4$FAC <- tm_B4$TMB4/sum(tm_B4$TMB4)
 
 
 
   espec <- data.frame(Wave = c(400:900), spectra)
 
 
-  df_SIM_ETM <- data.frame(1:4)
+  df_SIM_tm <- data.frame(1:4)
 
 
 
 
   for(i in 2:ncol(espec)) {
 
-    df_SIM_ETM[1,i] <- sum(etm_B2$FAC * espec[,i])
-    df_SIM_ETM[2,i] <- sum(etm_B3$FAC * espec[,i])
-    df_SIM_ETM[3,i] <- sum(etm_B4$FAC * espec[,i])
-    df_SIM_ETM[4,i] <- sum(etm_B5$FAC * espec[,i])
+    df_SIM_tm[1,i] <- sum(na.rm = T, tm_B1$FAC * espec[,i])
+    df_SIM_tm[2,i] <- sum(na.rm = T, tm_B2$FAC * espec[,i])
+    df_SIM_tm[3,i] <- sum(na.rm = T, tm_B3$FAC * espec[,i])
+    df_SIM_tm[4,i] <- sum(na.rm = T, tm_B4$FAC * espec[,i])
 
 
 
@@ -384,12 +384,12 @@ tm_simulation = function(spectra, point_name) {
 
 
 
-  df_SIM_ETM[,1] <- as.numeric(c("490","560","665","865"))
+  df_SIM_tm[,1] <- as.numeric(c("490","560","665","865"))
 
 
-  names(df_SIM_ETM) <- c("Wave", point_name)
+  names(df_SIM_tm) <- c("Wave", point_name)
 
-  return(df_SIM_ETM)
+  return(df_SIM_tm)
 
 
 
