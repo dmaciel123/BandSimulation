@@ -18,54 +18,53 @@ olci_simulation <- function(spectra, point_name) {
 
   #L? as fun??es de resposta - SENTINEL 2A
 
-  S2_A_B1 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,2)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B2 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,3)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B3 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,4)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B4 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,5)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B5 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,6)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B6 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,7)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B7 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,8)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B8 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,9)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B9 <- read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,10)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B10 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,11)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B11 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,12)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B12 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,13)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B13 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,14)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B14 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,15)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B15 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,16)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B16 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,17)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B17 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,18)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B18 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,19)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B19 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,20)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B20 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,21)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  S2_A_B21 <-read.xlsx("SRF/olci_FRE.xlsx", sheet = 1, cols = c(1,22)) %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B1 <- s3_srf[,c(1,2)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B2 <- s3_srf[,c(1,3)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B3 <- s3_srf[,c(1,4)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B4 <- s3_srf[,c(1,5)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B5 <- s3_srf[,c(1,6)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B6 <- s3_srf[,c(1,7)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B7 <- s3_srf[,c(1,8)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B8 <- s3_srf[,c(1,9)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B9 <- s3_srf[,c(1,10)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B10 <-s3_srf[,c(1,11)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B11 <-s3_srf[,c(1,12)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B12 <-s3_srf[,c(1,13)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B13 <-s3_srf[,c(1,14)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B14 <-s3_srf[,c(1,15)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B15 <-s3_srf[,c(1,16)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B16 <-s3_srf[,c(1,17)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B17 <-s3_srf[,c(1,18)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B18 <-s3_srf[,c(1,19)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B19 <-s3_srf[,c(1,20)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B20 <-s3_srf[,c(1,21)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  S3_A_B21 <-s3_srf[,c(1,22)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
 
 
 
   #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
 
-  S2_A_B1 $FAC  <- S2_A_B1$B1  /sum(S2_A_B1$B1  )
-  S2_A_B2 $FAC  <- S2_A_B2$B2  /sum(S2_A_B2$B2  )
-  S2_A_B3 $FAC  <- S2_A_B3$B3  /sum(S2_A_B3$B3  )
-  S2_A_B4 $FAC  <- S2_A_B4$B4  /sum(S2_A_B4$B4  )
-  S2_A_B5 $FAC  <- S2_A_B5$B5 /sum(S2_A_B5 $B5 )
-  S2_A_B6 $FAC  <- S2_A_B6$B6 /sum(S2_A_B6 $B6 )
-  S2_A_B7 $FAC  <- S2_A_B7$B7 /sum(S2_A_B7 $B7 )
-  S2_A_B8 $FAC  <- S2_A_B8$B8 /sum(S2_A_B8 $B8 )
-  S2_A_B9 $FAC  <- S2_A_B9$B9 /sum(S2_A_B9 $B9 )
-  S2_A_B10$FAC  <- S2_A_B10$B10/sum(S2_A_B10$B10)
-  S2_A_B11$FAC  <- S2_A_B11$B11/sum(S2_A_B11$B11)
-  S2_A_B12$FAC  <- S2_A_B12$B12/sum(S2_A_B12$B12)
-  S2_A_B13$FAC  <- S2_A_B13$B13/sum(S2_A_B13$B13)
-  S2_A_B14$FAC  <- S2_A_B14$B14/sum(S2_A_B14$B14)
-  S2_A_B15$FAC  <- S2_A_B15$B15/sum(S2_A_B15$B15)
-  S2_A_B16$FAC  <- S2_A_B16$B16/sum(S2_A_B16$B16)
-  S2_A_B17$FAC  <- S2_A_B17$B17/sum(S2_A_B17$B17)
-  S2_A_B18$FAC  <- S2_A_B18$B18/sum(S2_A_B18$B18)
-  S2_A_B19$FAC  <- S2_A_B19$B19/sum(S2_A_B19$B19)
+  S3_A_B1 $FAC  <- S3_A_B1$B1  /sum(S3_A_B1$B1  )
+  S3_A_B2 $FAC  <- S3_A_B2$B2  /sum(S3_A_B2$B2  )
+  S3_A_B3 $FAC  <- S3_A_B3$B3  /sum(S3_A_B3$B3  )
+  S3_A_B4 $FAC  <- S3_A_B4$B4  /sum(S3_A_B4$B4  )
+  S3_A_B5 $FAC  <- S3_A_B5$B5 /sum(S3_A_B5 $B5 )
+  S3_A_B6 $FAC  <- S3_A_B6$B6 /sum(S3_A_B6 $B6 )
+  S3_A_B7 $FAC  <- S3_A_B7$B7 /sum(S3_A_B7 $B7 )
+  S3_A_B8 $FAC  <- S3_A_B8$B8 /sum(S3_A_B8 $B8 )
+  S3_A_B9 $FAC  <- S3_A_B9$B9 /sum(S3_A_B9 $B9 )
+  S3_A_B10$FAC  <- S3_A_B10$B10/sum(S3_A_B10$B10)
+  S3_A_B11$FAC  <- S3_A_B11$B11/sum(S3_A_B11$B11)
+  S3_A_B12$FAC  <- S3_A_B12$B12/sum(S3_A_B12$B12)
+  S3_A_B13$FAC  <- S3_A_B13$B13/sum(S3_A_B13$B13)
+  S3_A_B14$FAC  <- S3_A_B14$B14/sum(S3_A_B14$B14)
+  S3_A_B15$FAC  <- S3_A_B15$B15/sum(S3_A_B15$B15)
+  S3_A_B16$FAC  <- S3_A_B16$B16/sum(S3_A_B16$B16)
+  S3_A_B17$FAC  <- S3_A_B17$B17/sum(S3_A_B17$B17)
+  S3_A_B18$FAC  <- S3_A_B18$B18/sum(S3_A_B18$B18)
+  S3_A_B19$FAC  <- S3_A_B19$B19/sum(S3_A_B19$B19)
 
-
-  espec <- data.frame(Wave = c(400:900), spectra)
+espec <- data.frame(Wave = c(400:900), spectra)
 
 
   olci.df.sim <- data.frame(1:19)
@@ -73,25 +72,25 @@ olci_simulation <- function(spectra, point_name) {
 
   for(i in 2:ncol(espec)) {
 
-    olci.df.sim[1,i] <- sum(na.rm = T, S2_A_B1$FAC * espec[,i])
-    olci.df.sim[2,i] <- sum(na.rm = T, S2_A_B2$FAC * espec[,i])
-    olci.df.sim[3,i] <- sum(na.rm = T, S2_A_B3$FAC * espec[,i])
-    olci.df.sim[4,i] <- sum(na.rm = T, S2_A_B4$FAC * espec[,i])
-    olci.df.sim[5,i] <- sum(na.rm = T, S2_A_B5$FAC * espec[,i])
-    olci.df.sim[6,i] <- sum(na.rm = T, S2_A_B6$FAC * espec[,i])
-    olci.df.sim[7,i] <- sum(na.rm = T, S2_A_B7$FAC * espec[,i])
-    olci.df.sim[8,i] <- sum(na.rm = T, S2_A_B8$FAC * espec[,i])
-    olci.df.sim[9,i] <- sum(na.rm = T, S2_A_B9$FAC * espec[,i])
-    olci.df.sim[10,i] <-sum(na.rm = T, S2_A_B10$FAC * espec[,i])
-    olci.df.sim[11,i]<- sum(na.rm = T, S2_A_B11$FAC * espec[,i])
-    olci.df.sim[12,i]<- sum(na.rm = T, S2_A_B12$FAC * espec[,i])
-    olci.df.sim[13,i]<- sum(na.rm = T, S2_A_B13$FAC * espec[,i])
-    olci.df.sim[14,i]<- sum(na.rm = T, S2_A_B14$FAC * espec[,i])
-    olci.df.sim[15,i]<- sum(na.rm = T, S2_A_B15$FAC * espec[,i])
-    olci.df.sim[16,i]<- sum(na.rm = T, S2_A_B16$FAC * espec[,i])
-    olci.df.sim[17,i]<- sum(na.rm = T, S2_A_B17$FAC * espec[,i])
-    olci.df.sim[18,i]<- sum(na.rm = T, S2_A_B18$FAC * espec[,i])
-    olci.df.sim[19,i]<- sum(na.rm = T, S2_A_B19$FAC * espec[,i])
+    olci.df.sim[1,i] <- sum(na.rm = T, S3_A_B1$FAC * espec[,i])
+    olci.df.sim[2,i] <- sum(na.rm = T, S3_A_B2$FAC * espec[,i])
+    olci.df.sim[3,i] <- sum(na.rm = T, S3_A_B3$FAC * espec[,i])
+    olci.df.sim[4,i] <- sum(na.rm = T, S3_A_B4$FAC * espec[,i])
+    olci.df.sim[5,i] <- sum(na.rm = T, S3_A_B5$FAC * espec[,i])
+    olci.df.sim[6,i] <- sum(na.rm = T, S3_A_B6$FAC * espec[,i])
+    olci.df.sim[7,i] <- sum(na.rm = T, S3_A_B7$FAC * espec[,i])
+    olci.df.sim[8,i] <- sum(na.rm = T, S3_A_B8$FAC * espec[,i])
+    olci.df.sim[9,i] <- sum(na.rm = T, S3_A_B9$FAC * espec[,i])
+    olci.df.sim[10,i] <-sum(na.rm = T, S3_A_B10$FAC * espec[,i])
+    olci.df.sim[11,i]<- sum(na.rm = T, S3_A_B11$FAC * espec[,i])
+    olci.df.sim[12,i]<- sum(na.rm = T, S3_A_B12$FAC * espec[,i])
+    olci.df.sim[13,i]<- sum(na.rm = T, S3_A_B13$FAC * espec[,i])
+    olci.df.sim[14,i]<- sum(na.rm = T, S3_A_B14$FAC * espec[,i])
+    olci.df.sim[15,i]<- sum(na.rm = T, S3_A_B15$FAC * espec[,i])
+    olci.df.sim[16,i]<- sum(na.rm = T, S3_A_B16$FAC * espec[,i])
+    olci.df.sim[17,i]<- sum(na.rm = T, S3_A_B17$FAC * espec[,i])
+    olci.df.sim[18,i]<- sum(na.rm = T, S3_A_B18$FAC * espec[,i])
+    olci.df.sim[19,i]<- sum(na.rm = T, S3_A_B19$FAC * espec[,i])
 
 
   }
@@ -133,27 +132,26 @@ msi_simulation = function(spectra, point_name) {
   require(tidyr)
 
   #L? as fun??es de resposta - SENTINEL 2A
-  S2_A_B1 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 2, cols = c(1,2)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_A_B2 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 2, cols = c(1,3)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_A_B3 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 2, cols = c(1,4)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_A_B4 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 2, cols = c(1,5)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_A_B5 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 2, cols = c(1,6)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_A_B6 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 2, cols = c(1,7)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_A_B7 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 2, cols = c(1,8)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_A_B8 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 2, cols = c(1,9)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_A_B8a <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 2, cols = c(1,10)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_A_B1 <-  s2_srf[,c(1,2)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_A_B2 <-  s2_srf[,c(1,3)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_A_B3 <-  s2_srf[,c(1,4)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_A_B4 <-  s2_srf[,c(1,5)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_A_B5 <-  s2_srf[,c(1,6)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_A_B6 <-  s2_srf[,c(1,7)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_A_B7 <-  s2_srf[,c(1,8)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_A_B8 <-  s2_srf[,c(1,9)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_A_B8a <- s2_srf[,c(1,10)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
 
   #L? as fun??es de resposta - SENTINEL 2B
-
-  S2_B_B1 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 3, cols = c(1,2)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_B_B2 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 3, cols = c(1,3)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_B_B3 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 3, cols = c(1,4)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_B_B4 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 3, cols = c(1,5)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_B_B5 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 3, cols = c(1,6)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_B_B6 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 3, cols = c(1,7)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_B_B7 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 3, cols = c(1,8)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_B_B8 <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 3, cols = c(1,9)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
-  S2_B_B8a <- read.xlsx("SRF/Spectral Response - Sentinel 2.xlsx", sheet = 3, cols = c(1,10)) %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_B_B1 <-  s2b_srf[,c(1,2)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_B_B2 <-  s2b_srf[,c(1,3)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_B_B3 <-  s2b_srf[,c(1,4)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_B_B4 <-  s2b_srf[,c(1,5)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_B_B5 <-  s2b_srf[,c(1,6)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_B_B6 <-  s2b_srf[,c(1,7)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_B_B7 <-  s2b_srf[,c(1,8)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_B_B8 <-  s2b_srf[,c(1,9)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
+  S2_B_B8a <- s2b_srf[,c(1,10)] %>% filter(SR_WL >= 400 & SR_WL <= 900)
 
   #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
 
@@ -234,11 +232,11 @@ oli_simulation = function(spectra, point_name) {
   require(tidyr)
 
   #L? as fun??es de resposta - SENTINEL 2A
-  OLI_B1 <- read.xlsx("SRF/oli_SRF.xlsx", sheet = 1, cols = c(1,2))
-  OLI_B2 <- read.xlsx("SRF/oli_SRF.xlsx", sheet = 1, cols = c(1,3))
-  OLI_B3 <- read.xlsx("SRF/oli_SRF.xlsx", sheet = 1, cols = c(1,4))
-  OLI_B4 <- read.xlsx("SRF/oli_SRF.xlsx", sheet = 1, cols = c(1,5))
-  OLI_B5 <- read.xlsx("SRF/oli_SRF.xlsx", sheet = 1, cols = c(1,6))
+  OLI_B1 <- l8_srf[,c(1,2)]
+  OLI_B2 <- l8_srf[,c(1,3)]
+  OLI_B3 <- l8_srf[,c(1,4)]
+  OLI_B4 <- l8_srf[,c(1,5)]
+  OLI_B5 <- l8_srf[,c(1,6)]
 
   #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
 
@@ -290,10 +288,10 @@ etm_simulation = function(spectra, point_name) {
   require(dplyr)
   require(tidyr)
 
-  etm_B1 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,2))
-  etm_B2 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,3))
-  etm_B3 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,4))
-  etm_B4 <- read.xlsx("SRF/L7_RSR_Ok.xlsx", sheet = 1, cols = c(1,5))
+  etm_B1 <- l7_srf[,c(1,2)]
+  etm_B2 <- l7_srf[,c(1,3)]
+  etm_B3 <- l7_srf[,c(1,4)]
+  etm_B4 <- l7_srf[,c(1,5)]
 
   #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
 
@@ -349,10 +347,10 @@ tm_simulation = function(spectra, point_name) {
   require(tidyr)
 
   #L? as fun??es de resposta - SENTINEL 2A
-  tm_B1 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,2))
-  tm_B2 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,3))
-  tm_B3 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,4))
-  tm_B4 <- read.xlsx("SRF/L5_RSR.xlsx", sheet = 1, cols = c(1,5))
+  tm_B1 <- l5_srf[,c(1,2)]
+  tm_B2 <- l5_srf[,c(1,3)]
+  tm_B3 <- l5_srf[,c(1,4)]
+  tm_B4 <- l5_srf[,c(1,5)]
 
   #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
 
@@ -419,14 +417,14 @@ superdove_simulation <- function(spectra, point_name) {
   # red_edge
   # NIR
 
-  B1 =     read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,2)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  B2 =        read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,3)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  B3 =       read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,4)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  B4 =    read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,5)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  B5 =      read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,6)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  B6 =         read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,7)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  B7 =    read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,8)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
-  B8 =         read.table('SRF/Superdove.csv', header= T, sep = ',')[,c(1,9)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B1 =        planet_srf[,c(1,2)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B2 =        planet_srf[,c(1,3)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B3 =        planet_srf[,c(1,4)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B4 =        planet_srf[,c(1,5)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B5 =        planet_srf[,c(1,6)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B6 =        planet_srf[,c(1,7)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B7 =        planet_srf[,c(1,8)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
+  B8 =        planet_srf[,c(1,9)] %>% filter(Wavelength >= 400 & Wavelength <= 900)
 
 
 
