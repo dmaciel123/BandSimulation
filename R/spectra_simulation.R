@@ -282,11 +282,13 @@ etm_simulation = function(spectra, point_name) {
 
   #Simulação e Rrs
 
-  #Simulation to Landsat-7/ETM+
+  #Simulation to Landsat-7/ETM+.
 
   require(openxlsx)
   require(dplyr)
   require(tidyr)
+
+
 
   etm_B1 <- l7_srf[,c(1,2)]
   etm_B2 <- l7_srf[,c(1,3)]
