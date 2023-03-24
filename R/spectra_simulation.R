@@ -472,3 +472,98 @@ superdove_simulation <- function(spectra, point_name) {
 
 }
 
+
+modis_simulation <- function(spectra, point_name) {
+  #Simula??o Sentinel 2A e 2B
+
+  require(openxlsx)
+  require(dplyr)
+  require(tidyr)
+
+  #L? as fun??es de resposta - SENTINEL 2A
+
+  MODIS_B1 <- modis_srf[,c(1,2)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B2 <- modis_srf[,c(1,3)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B3 <- modis_srf[,c(1,4)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B4 <- modis_srf[,c(1,5)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B5 <- modis_srf[,c(1,6)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B6 <- modis_srf[,c(1,7)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B7 <- modis_srf[,c(1,8)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B8 <- modis_srf[,c(1,9)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B9 <- modis_srf[,c(1,10)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B10 <-modis_srf[,c(1,11)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B11 <-modis_srf[,c(1,12)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B12 <-modis_srf[,c(1,13)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B13 <-modis_srf[,c(1,14)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B14 <-modis_srf[,c(1,15)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B15 <-modis_srf[,c(1,16)] %>% filter(wavelength >= 400 & wavelength <= 900)
+  MODIS_B16 <-modis_srf[,c(1,17)] %>% filter(wavelength >= 400 & wavelength <= 900)
+
+  #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
+
+  MODIS_B1$FAC  <-  MODIS_B1$RSR_412  /sum(MODIS_B1$RSR_412)
+  MODIS_B2$FAC  <-  MODIS_B2$RSR_443  /sum(MODIS_B2$RSR_443)
+  MODIS_B3$FAC  <-  MODIS_B3$RSR_469  /sum(MODIS_B3$RSR_469)
+  MODIS_B4$FAC  <-  MODIS_B4$RSR_488  /sum(MODIS_B4$RSR_488)
+  MODIS_B5$FAC  <-  MODIS_B5$RSR_531 /sum(MODIS_B5$RSR_531)
+  MODIS_B6$FAC  <-  MODIS_B6$RSR_551 /sum(MODIS_B6$RSR_551)
+  MODIS_B7$FAC  <-  MODIS_B7$RSR_555 /sum(MODIS_B7$RSR_555)
+  MODIS_B8$FAC  <-  MODIS_B8$RSR_645 /sum(MODIS_B8$RSR_645)
+  MODIS_B9$FAC  <-  MODIS_B9$RSR_667 /sum(MODIS_B9$RSR_667)
+  MODIS_B10$FAC  <- MODIS_B10$RSR_678/sum(MODIS_B10$RSR_678)
+  MODIS_B11$FAC  <- MODIS_B11$RSR_748/sum(MODIS_B11$RSR_748)
+  MODIS_B12$FAC  <- MODIS_B12$RSR_859/sum(MODIS_B12$RSR_859)
+  MODIS_B13$FAC  <- MODIS_B13$RSR_869/sum(MODIS_B13$RSR_869)
+  MODIS_B14$FAC  <- MODIS_B14$RSR_1240/sum(MODIS_B14$RSR_1240)
+  MODIS_B15$FAC  <- MODIS_B15$RSR_1640/sum(MODIS_B15$RSR_1640)
+  MODIS_B16$FAC  <- MODIS_B16$RSR_2130/sum(MODIS_B16$RSR_2130)
+
+  espec <- data.frame(Wave = c(400:900), spectra)
+
+
+  modis.df.sim <- data.frame(1:16)
+
+
+  for(i in 2:ncol(espec)) {
+
+    modis.df.sim[1,i] <- sum(na.rm = T, MODIS_B1$FAC * espec[,i])
+    modis.df.sim[2,i] <- sum(na.rm = T, MODIS_B2$FAC * espec[,i])
+    modis.df.sim[3,i] <- sum(na.rm = T, MODIS_B3$FAC * espec[,i])
+    modis.df.sim[4,i] <- sum(na.rm = T, MODIS_B4$FAC * espec[,i])
+    modis.df.sim[5,i] <- sum(na.rm = T, MODIS_B5$FAC * espec[,i])
+    modis.df.sim[6,i] <- sum(na.rm = T, MODIS_B6$FAC * espec[,i])
+    modis.df.sim[7,i] <- sum(na.rm = T, MODIS_B7$FAC * espec[,i])
+    modis.df.sim[8,i] <- sum(na.rm = T, MODIS_B8$FAC * espec[,i])
+    modis.df.sim[9,i] <- sum(na.rm = T, MODIS_B9$FAC * espec[,i])
+    modis.df.sim[10,i] <-sum(na.rm = T, MODIS_B10$FAC * espec[,i])
+    modis.df.sim[11,i]<- sum(na.rm = T, MODIS_B11$FAC * espec[,i])
+    modis.df.sim[12,i]<- sum(na.rm = T, MODIS_B12$FAC * espec[,i])
+    modis.df.sim[13,i]<- sum(na.rm = T, MODIS_B13$FAC * espec[,i])
+    modis.df.sim[14,i]<- sum(na.rm = T, MODIS_B14$FAC * espec[,i])
+    modis.df.sim[15,i]<- sum(na.rm = T, MODIS_B15$FAC * espec[,i])
+    modis.df.sim[16,i]<- sum(na.rm = T, MODIS_B16$FAC * espec[,i])
+
+  }
+
+  modis.df.sim[,1] <-  c(412,
+                        443,
+                        469,
+                        488,
+                        531,
+                        551,
+                        555,
+                        645,
+                        667,
+                        678,
+                        748,
+                        859,
+                        869,
+                        1240,
+                        1640,
+                        2130)
+
+  names(modis.df.sim) <- c("Wave", point_name)
+
+  return(modis.df.sim)
+
+}

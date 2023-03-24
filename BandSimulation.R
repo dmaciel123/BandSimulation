@@ -25,5 +25,5 @@ etm = etm_simulation(spectra = rrs, point_name = point_names)
 tm = tm_simulation(spectra = rrs, point_name = point_names)
 olci = olci_simulation(spectra = rrs, point_name = point_names)
 superDove = superdove_simulation(spectra = rrs, point_name = point_names)
-
+modis = modis_simulation(spectra = rrs, point_name = point_names)
 
