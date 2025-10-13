@@ -567,3 +567,265 @@ modis_simulation <- function(spectra, point_name) {
   return(modis.df.sim)
 
 }
+
+
+cbers_04_MUX_simulation = function(spectra, point_name) {
+
+  #Simulação e Rrs
+
+  #Simula??o Sentinel 2A e 2B
+
+  require(openxlsx)
+  require(dplyr)
+  require(tidyr)
+
+  #L? as fun??es de resposta - SENTINEL 2A
+  mux_b5 <- CBERS_04_MUX[,c(1,2)]
+  mux_b6 <- CBERS_04_MUX[,c(1,3)]
+  mux_b7 <- CBERS_04_MUX[,c(1,4)]
+  mux_b8 <- CBERS_04_MUX[,c(1,5)]
+
+  #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
+
+  mux_b5$FAC <- mux_b5$CBERS4_MUXB5_SRF/sum(mux_b5$CBERS4_MUXB5_SRF)
+  mux_b6$FAC <- mux_b6$CBERS4_MUXB6_SRF/sum(mux_b6$CBERS4_MUXB6_SRF)
+  mux_b7$FAC <- mux_b7$CBERS4_MUXB7_SRF/sum(mux_b7$CBERS4_MUXB7_SRF)
+  mux_b8$FAC <- mux_b8$CBERS4_MUXB8_SRF/sum(mux_b8$CBERS4_MUXB8_SRF)
+
+
+
+  espec <- data.frame(Wave = c(400:900), spectra)
+
+
+  df_SIM_mux <- data.frame(1:4)
+
+
+
+
+  for(i in 2:ncol(espec)) {
+
+    df_SIM_mux[1,i] <- sum(na.rm = T, mux_b5$FAC * espec[,i])
+    df_SIM_mux[2,i] <- sum(na.rm = T, mux_b6$FAC * espec[,i])
+    df_SIM_mux[3,i] <- sum(na.rm = T, mux_b7$FAC * espec[,i])
+    df_SIM_mux[4,i] <- sum(na.rm = T, mux_b8$FAC * espec[,i])
+
+
+
+  }
+
+
+
+  df_SIM_mux[,1] <- as.numeric(c("490","560","665","865"))
+
+
+  names(df_SIM_mux) <- c("Wave", point_name)
+
+  return(df_SIM_mux)
+
+
+
+
+}
+
+
+cbers_04A_MUX_simulation = function(spectra, point_name) {
+
+  #Simulação e Rrs
+
+  #Simula??o Sentinel 2A e 2B
+
+  require(openxlsx)
+  require(dplyr)
+  require(tidyr)
+
+  #L? as fun??es de resposta - SENTINEL 2A
+  mux_b5 <- cbers_04A_MUX[,c(1,2)]
+  mux_b6 <- cbers_04A_MUX[,c(1,3)]
+  mux_b7 <- cbers_04A_MUX[,c(1,4)]
+  mux_b8 <- cbers_04A_MUX[,c(1,5)]
+
+  #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
+
+  mux_b5$FAC <- mux_b5$CBERS04A_MUXB5_SRF/sum(mux_b5$CBERS04A_MUXB5_SRF)
+  mux_b6$FAC <- mux_b6$CBERS04A_MUXB6_SRF/sum(mux_b6$CBERS04A_MUXB6_SRF)
+  mux_b7$FAC <- mux_b7$CBERS04A_MUXB7_SRF/sum(mux_b7$CBERS04A_MUXB7_SRF)
+  mux_b8$FAC <- mux_b8$CBERS04A_MUXB8_SRF/sum(mux_b8$CBERS04A_MUXB8_SRF)
+
+
+
+  espec <- data.frame(Wave = c(400:900), spectra)
+
+
+  df_SIM_mux <- data.frame(1:4)
+
+
+
+
+  for(i in 2:ncol(espec)) {
+
+    df_SIM_mux[1,i] <- sum(na.rm = T, mux_b5$FAC * espec[,i])
+    df_SIM_mux[2,i] <- sum(na.rm = T, mux_b6$FAC * espec[,i])
+    df_SIM_mux[3,i] <- sum(na.rm = T, mux_b7$FAC * espec[,i])
+    df_SIM_mux[4,i] <- sum(na.rm = T, mux_b8$FAC * espec[,i])
+
+
+
+  }
+
+
+
+  df_SIM_mux[,1] <- as.numeric(c("490","560","665","865"))
+
+
+  names(df_SIM_mux) <- c("Wave", point_name)
+
+  return(df_SIM_mux)
+
+
+
+
+}
+
+
+
+cbers_04A_WPM_simulation = function(spectra, point_name) {
+
+  #Simulação e Rrs
+
+  #Simula??o Sentinel 2A e 2B
+
+  require(openxlsx)
+  require(dplyr)
+  require(tidyr)
+
+
+  CBERS_04A_WPM = filter(CBERS_04A_WPM, Wavelength < 901)
+
+  #L? as fun??es de resposta - SENTINEL 2A
+  WPM_PAN <- CBERS_04A_WPM[,c(1,2)]
+  WPM_b1  <- CBERS_04A_WPM[,c(1,3)]
+  WPM_b2  <- CBERS_04A_WPM[,c(1,4)]
+  WPM_b3  <- CBERS_04A_WPM[,c(1,5)]
+  WPM_b4  <- CBERS_04A_WPM[,c(1,6)]
+
+  #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
+
+  WPM_PAN$FAC <- WPM_PAN$CBERS04A_WPMPAN_SRF/sum(WPM_PAN$CBERS04A_WPMPAN_SRF)
+  WPM_b1$FAC <- WPM_b1$CBERS04A_WPMB1_SRF/sum(WPM_b1$CBERS04A_WPMB1_SRF)
+  WPM_b2$FAC <- WPM_b2$CBERS04A_WPMB2_SRF/sum(WPM_b2$CBERS04A_WPMB2_SRF)
+  WPM_b3$FAC <- WPM_b3$CBERS04A_WPMB3_SRF/sum(WPM_b3$CBERS04A_WPMB3_SRF)
+  WPM_b4$FAC <- WPM_b4$CBERS04A_WPMB4_SRF/sum(WPM_b4$CBERS04A_WPMB4_SRF)
+
+
+
+  espec <- data.frame(Wave = c(400:900), spectra)
+
+
+  df_SIM_WPM <- data.frame(1:5)
+
+
+
+
+  for(i in 2:ncol(espec)) {
+
+    df_SIM_WPM[1,i] <- sum(na.rm = T, WPM_PAN$FAC * espec[,i])
+    df_SIM_WPM[2,i] <- sum(na.rm = T, WPM_b1$FAC * espec[,i])
+    df_SIM_WPM[3,i] <- sum(na.rm = T, WPM_b2$FAC * espec[,i])
+    df_SIM_WPM[4,i] <- sum(na.rm = T, WPM_b3$FAC * espec[,i])
+    df_SIM_WPM[5,i] <- sum(na.rm = T, WPM_b4$FAC * espec[,i])
+
+
+
+  }
+
+
+
+  df_SIM_WPM[,1] <- c("PAN", "490","560","665","865")
+
+
+  names(df_SIM_WPM) <- c("Wave", point_name)
+
+  return(df_SIM_WPM)
+
+
+
+
+}
+
+
+Amazonia_WFI = function(spectra, point_name) {
+
+  #Simulação e Rrs
+
+  #Simula??o Sentinel 2A e 2B
+
+  require(openxlsx)
+  require(dplyr)
+  require(tidyr)
+
+
+  amazonia_1 = filter(amazonia_1, Wavelength < 901)
+
+  #L? as fun??es de resposta - SENTINEL 2A
+  WPM_PAN <- CBERS_04A_WPM[,c(1,2)]
+
+  AMAZONIA1_WFI_RO_B1_SRF  <- amazonia_1[,c(1,2)]
+  AMAZONIA1_WFI_RO_B2_SRF  <- amazonia_1[,c(1,3)]
+  AMAZONIA1_WFI_RO_B3_SRF  <- amazonia_1[,c(1,4)]
+  AMAZONIA1_WFI_RO_B4_SRF  <- amazonia_1[,c(1,5)]
+  AMAZONIA1_WFI_LO_B1_SRF  <- amazonia_1[,c(1,6)]
+  AMAZONIA1_WFI_LO_B2_SRF  <- amazonia_1[,c(1,7)]
+  AMAZONIA1_WFI_LO_B3_SRF  <- amazonia_1[,c(1,8)]
+  AMAZONIA1_WFI_LO_B4_SRF  <- amazonia_1[,c(1,9)]
+
+    #Factor de Corre??o (FAC) = Valor da fun??o de resposta / soma da fun??o de resposta
+
+  AMAZONIA1_WFI_RO_B1_SRF$FAC <- AMAZONIA1_WFI_RO_B1_SRF$AMAZONIA1_WFI_RO_B1_SRF/sum(AMAZONIA1_WFI_RO_B1_SRF$AMAZONIA1_WFI_RO_B1_SRF)
+  AMAZONIA1_WFI_RO_B2_SRF$FAC <- AMAZONIA1_WFI_RO_B2_SRF$AMAZONIA1_WFI_RO_B2_SRF/sum(AMAZONIA1_WFI_RO_B2_SRF$AMAZONIA1_WFI_RO_B2_SRF)
+  AMAZONIA1_WFI_RO_B3_SRF$FAC <- AMAZONIA1_WFI_RO_B3_SRF$AMAZONIA1_WFI_RO_B3_SRF/sum(AMAZONIA1_WFI_RO_B3_SRF$AMAZONIA1_WFI_RO_B3_SRF)
+  AMAZONIA1_WFI_RO_B4_SRF$FAC <- AMAZONIA1_WFI_RO_B4_SRF$AMAZONIA1_WFI_RO_B4_SRF/sum(AMAZONIA1_WFI_RO_B4_SRF$AMAZONIA1_WFI_RO_B4_SRF)
+  AMAZONIA1_WFI_LO_B1_SRF$FAC <- AMAZONIA1_WFI_LO_B1_SRF$AMAZONIA1_WFI_LO_B1_SRF/sum(AMAZONIA1_WFI_LO_B1_SRF$AMAZONIA1_WFI_LO_B1_SRF)
+  AMAZONIA1_WFI_LO_B2_SRF$FAC <- AMAZONIA1_WFI_LO_B2_SRF$AMAZONIA1_WFI_LO_B2_SRF/sum(AMAZONIA1_WFI_LO_B2_SRF$AMAZONIA1_WFI_LO_B2_SRF)
+  AMAZONIA1_WFI_LO_B3_SRF$FAC <- AMAZONIA1_WFI_LO_B3_SRF$AMAZONIA1_WFI_LO_B3_SRF/sum(AMAZONIA1_WFI_LO_B3_SRF$AMAZONIA1_WFI_LO_B3_SRF)
+  AMAZONIA1_WFI_LO_B4_SRF$FAC <- AMAZONIA1_WFI_LO_B4_SRF$AMAZONIA1_WFI_LO_B4_SRF/sum(AMAZONIA1_WFI_LO_B4_SRF$AMAZONIA1_WFI_LO_B4_SRF)
+
+
+  espec <- data.frame(Wave = c(400:900), spectra)
+
+
+  df_SIM_WFI_AMAZONIA <- data.frame(1:8)
+
+
+
+
+  for(i in 2:ncol(espec)) {
+
+    df_SIM_WFI_AMAZONIA[1,i] <- sum(na.rm = T, AMAZONIA1_WFI_RO_B1_SRF$FAC * espec[,i])
+    df_SIM_WFI_AMAZONIA[2,i] <- sum(na.rm = T, AMAZONIA1_WFI_RO_B2_SRF$FAC * espec[,i])
+    df_SIM_WFI_AMAZONIA[3,i] <- sum(na.rm = T, AMAZONIA1_WFI_RO_B3_SRF$FAC * espec[,i])
+    df_SIM_WFI_AMAZONIA[4,i] <- sum(na.rm = T, AMAZONIA1_WFI_RO_B4_SRF$FAC * espec[,i])
+    df_SIM_WFI_AMAZONIA[5,i] <- sum(na.rm = T, AMAZONIA1_WFI_LO_B1_SRF$FAC * espec[,i])
+    df_SIM_WFI_AMAZONIA[6,i] <- sum(na.rm = T, AMAZONIA1_WFI_LO_B2_SRF$FAC * espec[,i])
+    df_SIM_WFI_AMAZONIA[7,i] <- sum(na.rm = T, AMAZONIA1_WFI_LO_B3_SRF$FAC * espec[,i])
+    df_SIM_WFI_AMAZONIA[8,i] <- sum(na.rm = T, AMAZONIA1_WFI_LO_B4_SRF$FAC * espec[,i])
+
+
+
+  }
+
+
+
+  df_SIM_WFI_AMAZONIA[,1] <- c("RO_490","RO_560","RO_665","RO_865", "LO_490","LO_560","LO_665","LO_865")
+
+
+  names(df_SIM_WFI_AMAZONIA) <- c("Wave", point_name)
+
+  return(df_SIM_WFI_AMAZONIA)
+
+
+
+
+}
+
+
+
