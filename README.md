@@ -1,23 +1,43 @@
-# BandSimulation
- 
-This package is used for simulating the bands of remote sensors based on they respective Spectral Response Functions (SRF) / Relative Spectral Response (RSR). The satellites/sensors added to this package are: 
+# 🌊 BandSimulation
 
-Landsat-5/TM
+**BandSimulation** is an R package designed to simulate the spectral bands of remote sensing instruments based on their **Spectral Response Functions (SRF)** or **Relative Spectral Responses (RSR)**.  
+It enables users to generate realistic band-averaged reflectance values from hyperspectral or in situ spectral data, facilitating cross-sensor comparisons and model applications.
 
-Landsat-7/ETM+
+---
 
-Landsat-8/OLI
+## 🛰️ Supported Sensors
 
-Sentinel-2/MSI A and B
+The package currently includes SRF/RSR data for the following satellite sensors:
 
-Sentinel-3/OLCI
+- **Landsat-5 / TM**  
+- **Landsat-7 / ETM+**  
+- **Landsat-8 / OLI**  
+- **Sentinel-2 / MSI** (A and B)  
+- **Sentinel-3 / OLCI**  
+- **PlanetScope SuperDove**
+- **CBERS-4 / MUX**
+- **CBERS-4A / MUX**
+- **CBERS-4A / WPM**
+- **Amazônia-1 / WFI**
 
-PlanetScope SuperDove
 
-The Spectral Response Functions for each satellite were obtained from its respective sources. 
+All spectral response functions were obtained from their official mission sources.
 
-An example is included (BandSimulation.R) with a subset of the freely available Rrs data from GLORIA dataset Lehmann et al. (2023) (https://doi.org/10.1038/s41597-023-01973-y) 
+---
 
+## 📘 Example
 
-For running this package in R you can download the archive or use the gitclone function. After that, open the project directory and run the `bandsSimulation` file.
+An example script is provided: **`BandSimulation.R`**  
+It demonstrates how to apply the package using a subset of the freely available **Rrs** data from the **GLORIA dataset**  
+(Lehmann et al., 2023, *Scientific Data*, https://doi.org/10.1038/s41597-023-01973-y).
 
+---
+
+## ⚙️ Installation and Usage
+
+You can install and run **BandSimulation** directly from its GitHub repository.
+
+### 🔹 Option 1: Clone via Git
+```bash
+
+devtools::install_github("dmaciel123/BandSimulation")
