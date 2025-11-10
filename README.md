@@ -37,7 +37,7 @@ It demonstrates how to apply the package using a subset of the freely available 
 
 You can install and run **BandSimulation** directly from its GitHub repository.
 
-### 🔹 Option 1: Clone via Git
+### 🔹 Option 1: Instalation using devtools directly in R
 ```bash
 
 devtools::install_github("dmaciel123/BandSimulation")
